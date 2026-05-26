@@ -1,0 +1,102 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "D:\Software\iverilog\iverilog\lib\ivl\system.vpi";
+:vpi_module "D:\Software\iverilog\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "D:\Software\iverilog\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "D:\Software\iverilog\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "D:\Software\iverilog\iverilog\lib\ivl\va_math.vpi";
+S_0000015d1f4c8ae0 .scope module, "counter_tb" "counter_tb" 2 3;
+ .timescale -9 -9;
+v0000015d1f524490_0 .var "clk", 0 0;
+v0000015d1f523a90_0 .net "q", 6 0, L_0000015d1f4c5b50;  1 drivers
+v0000015d1f524530_0 .var "reset", 0 0;
+S_0000015d1f4c8c70 .scope module, "counter_circuit1" "counter" 2 8, 3 1 0, S_0000015d1f4c8ae0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "CLK";
+    .port_info 1 /INPUT 1 "Reset";
+    .port_info 2 /OUTPUT 7 "q";
+L_0000015d1f4c5b50 .functor BUFZ 7, v0000015d1f4a2e20_0, C4<0000000>, C4<0000000>, C4<0000000>;
+v0000015d1f4a2f60_0 .net "CLK", 0 0, v0000015d1f524490_0;  1 drivers
+v0000015d1f4a3000_0 .net "Reset", 0 0, v0000015d1f524530_0;  1 drivers
+v0000015d1f4a30a0_0 .net "d_temp", 6 0, L_0000015d1f5243f0;  1 drivers
+v0000015d1f4d5ee0_0 .net "q", 6 0, L_0000015d1f4c5b50;  alias, 1 drivers
+v0000015d1f4d5f80_0 .net "q_temp", 6 0, v0000015d1f4a2e20_0;  1 drivers
+S_0000015d1f4d6830 .scope module, "adder_circuit1" "addOne" 3 10, 4 1 0, S_0000015d1f4c8c70;
+ .timescale 0 0;
+    .port_info 0 /INPUT 7 "I";
+    .port_info 1 /OUTPUT 7 "O";
+v0000015d1f4a3540_0 .net "I", 6 0, v0000015d1f4a2e20_0;  alias, 1 drivers
+v0000015d1f4c77a0_0 .net "O", 6 0, L_0000015d1f5243f0;  alias, 1 drivers
+L_0000015d1f524878 .functor BUFT 1, C4<0000001>, C4<0>, C4<0>, C4<0>;
+v0000015d1f25a830_0 .net/2u *"_ivl_0", 6 0, L_0000015d1f524878;  1 drivers
+L_0000015d1f5243f0 .arith/sum 7, v0000015d1f4a2e20_0, L_0000015d1f524878;
+S_0000015d1f4d69c0 .scope module, "register_circuit1" "register" 3 9, 5 1 0, S_0000015d1f4c8c70;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 7 "d";
+    .port_info 3 /OUTPUT 7 "q";
+L_0000015d1f4c5920 .functor BUFZ 7, L_0000015d1f5243f0, C4<0000000>, C4<0000000>, C4<0000000>;
+v0000015d1f4d6b50_0 .net "clk", 0 0, v0000015d1f524490_0;  alias, 1 drivers
+v0000015d1f4d6bf0_0 .net "d", 6 0, L_0000015d1f5243f0;  alias, 1 drivers
+v0000015d1f4a2ce0_0 .net "q", 6 0, v0000015d1f4a2e20_0;  alias, 1 drivers
+v0000015d1f4a2d80_0 .net "q_next", 6 0, L_0000015d1f4c5920;  1 drivers
+v0000015d1f4a2e20_0 .var "q_reg", 6 0;
+v0000015d1f4a2ec0_0 .net "reset", 0 0, v0000015d1f524530_0;  alias, 1 drivers
+E_0000015d1f4d86b0 .event posedge, v0000015d1f4a2ec0_0, v0000015d1f4d6b50_0;
+    .scope S_0000015d1f4d69c0;
+T_0 ;
+    %wait E_0000015d1f4d86b0;
+    %load/vec4 v0000015d1f4a2ec0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 7;
+    %assign/vec4 v0000015d1f4a2e20_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0000015d1f4a2d80_0;
+    %assign/vec4 v0000015d1f4a2e20_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0000015d1f4c8ae0;
+T_1 ;
+    %load/vec4 v0000015d1f524490_0;
+    %inv;
+    %store/vec4 v0000015d1f524490_0, 0, 1;
+    %delay 10, 0;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0000015d1f4c8ae0;
+T_2 ;
+    %vpi_call 2 15 "$dumpfile", "test.vcd" {0 0 0};
+    %vpi_call 2 16 "$dumpvars", 32'sb00000000000000000000000000000000, S_0000015d1f4c8ae0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0000015d1f524490_0, 0;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0000015d1f524530_0, 0;
+    %delay 20, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0000015d1f524530_0, 0;
+    %delay 20, 0;
+    %delay 20, 0;
+    %delay 20, 0;
+    %delay 20, 0;
+    %vpi_call 2 27 "$finish" {0 0 0};
+    %end;
+    .thread T_2;
+    .scope S_0000015d1f4c8ae0;
+T_3 ;
+    %vpi_call 2 30 "$monitor", "clk = %b, reset = %b, q = %b", v0000015d1f524490_0, v0000015d1f524530_0, v0000015d1f523a90_0 {0 0 0};
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 6;
+    "N/A";
+    "<interactive>";
+    "counter_tb.v";
+    "counter.v";
+    "addone.v";
+    "register.v";

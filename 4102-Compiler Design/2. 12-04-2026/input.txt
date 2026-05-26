@@ -1,0 +1,16 @@
+int main()
+{
+    int aa
+    al23
+    _
+
+
+int float char
+int
+
+
+    _a
+    _aql2
+    123
+    _ | letter letter | digit
+}

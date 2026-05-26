@@ -1,0 +1,56 @@
+Total value: 2000
+Linear Search: 
+Position: -1 Total Steps: 2001
+Binary Search: 
+Position: -1 Total Steps: 21
+
+
+Total value: 5000
+Linear Search: 
+Position: 2849 Total Steps: 2850
+Binary Search: 
+Position: 2849 Total Steps: 24
+
+
+Total value: 8000
+Linear Search: 
+Position: -1 Total Steps: 8001
+Binary Search: 
+Position: -1 Total Steps: 25
+
+
+Total value: 10000
+Linear Search: 
+Position: 7842 Total Steps: 7843
+Binary Search: 
+Position: 7842 Total Steps: 26
+
+
+Total value: 12000
+Linear Search: 
+Position: -1 Total Steps: 12001
+Binary Search: 
+Position: -1 Total Steps: 27
+
+
+Total value: 15000
+Linear Search: 
+Position: 12559 Total Steps: 12560
+Binary Search: 
+Position: 12559 Total Steps: 22
+
+
+Total value: 18000
+Linear Search: 
+Position: 11736 Total Steps: 11737
+Binary Search: 
+Position: 11736 Total Steps: 24
+
+
+Total value: 20000
+Linear Search: 
+Position: 6478 Total Steps: 6479
+Binary Search: 
+Position: 6478 Total Steps: 24
+
+

@@ -1,0 +1,17 @@
+< THE SYMBOL TABLE >  BLINK CODE.exe  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+CODE                     	00010     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+START                    	00005     	-1        	LABEL     	code      
+XX                       	0000D     	-1        	LABEL     	code      
+XXX                      	00016     	-1        	LABEL     	code      
+LOOPY1                   	00018     	-1        	LABEL     	code      
+LOOPY2                   	00021     	-1        	LABEL     	code      
+===================================================================================================
+[ 06/07/2025  --  01:18:53 ] 
+< END >
+ 

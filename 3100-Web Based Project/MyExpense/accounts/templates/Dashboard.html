@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block title %}Dashboard{% endblock %} 
+
+{% block content %}
+{% if request.user.is_authenticated %}
+
+{% if messages %}
+    {% for msg in messages %}
+        <div id="django-message" class="alert alert-{{ message.tags }}">
+            <p style="background-color: green; color: black; padding: 10px; border-radius: 5px;">
+        {{ msg }}
+    </p>
+        </div>
+    {% endfor %}
+{% endif %}
+<table style="margin:auto; width:90%; text-align:center;" class="table table-bordered border-warning mt-5">
+    <tr>
+        <td>
+        <h3>
+        <p class="text-info" style="font-family: 'Arial'">Welcome, {{name}} </p>
+        <p style="font-family: 'Arial'">Your A/C No - {{ac}} </p>
+        <p class="text-success" style="font-family: 'Arial'">Current Balance - {{save}} TK </p> 
+    </h3>
+    </td>
+    </tr>
+</table>
+
+<table style="margin:auto; width:90%; text-align:center;" class="table table-bordered border-warning mt-2">
+    <tr>
+        <td>
+            <h5>
+            <p style="font-family: 'Arial'">Total Income: {{income}} TK</p>
+            <p style="font-family: 'Arial'">Total cost: {{cost}} TK</p>
+            <p style="font-family: 'Arial'">Cost(%): {{cp}}% </p>
+            <p style="font-family: 'Arial'">Savings(%): {{sp}}% </p>
+        </h5>
+        </td>
+        <td>
+            <h5>
+            <p style="font-family: 'Arial'">Cash in Hand: {{hand}} TK </p>
+            <p style="font-family: 'Arial'">Cash in Bank: {{bank}} TK</p>
+        </td>
+    </tr>
+</table>
+<table style="margin:auto; width:90%; text-align:center;" class="mt-2">
+    <tr>
+        <td>
+            <img src="data:image/png;base64,{{ chart1 }}" alt="Bar Chart" style="width: 400px; height: 400px;">
+        </td>
+        <td>
+            <img src="data:image/png;base64,{{ chart2 }}" alt="Bar Chart" style="width: 400px; height: 400px;">
+        </td>
+        <td>
+            <img src="data:image/png;base64,{{ chart3 }}" alt="Pie Chart" style="width: 400px; height: 400px;">
+        </td>
+    </tr>
+        
+</table>
+{% comment %} <form method="post" action="/accounts/dashboard/">
+    {% csrf_token %}
+    <div style="text-align: center;" >
+        <button type="submit" class="btn btn-danger mt-5" style="font-family: 'Arial'">Reset to 0</button>
+    </div>
+</form> {% endcomment %}
+
+<a type="submit" class="btn btn-primary mt-5" style="font-family:Arial;" href="/accounts/specific/">
+    Update Specific Item</a>  
+{% endif %}
+<script>
+function text_color() {
+    // Hide the button but keep its space
+    document.getElementById("dash").style.color="blue";
+  }
+text_color();
+</script>
+{% endblock %}

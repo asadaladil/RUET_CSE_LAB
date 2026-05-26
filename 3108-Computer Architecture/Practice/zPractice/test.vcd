@@ -1,0 +1,73 @@
+$date
+	Sat Jun 28 21:58:49 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module count_tb $end
+$var wire 7 ! o [6:0] $end
+$var reg 1 " clk $end
+$var reg 1 # en $end
+$var reg 1 $ reset $end
+$scope module uut $end
+$var wire 1 " clk $end
+$var wire 1 # en $end
+$var wire 7 % i_next [6:0] $end
+$var wire 7 & o [6:0] $end
+$var wire 1 $ reset $end
+$var wire 7 ' o_temp [6:0] $end
+$scope module Reg $end
+$var wire 7 ( I [6:0] $end
+$var wire 1 " clk $end
+$var wire 1 # en $end
+$var wire 1 $ reset $end
+$var reg 7 ) Q [6:0] $end
+$upscope $end
+$scope module add $end
+$var wire 7 * I [6:0] $end
+$var wire 7 + O [6:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx +
+bx *
+bx )
+bx (
+bx '
+bx &
+bx %
+0$
+0#
+0"
+bx !
+$end
+#10000
+1"
+#20000
+0"
+1#
+#30000
+1"
+#40000
+0"
+#50000
+1"
+#60000
+0"
+#70000
+1"
+#80000
+0"
+#90000
+1"
+#100000
+0"

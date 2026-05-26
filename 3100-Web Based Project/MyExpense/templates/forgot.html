@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %} 
+{% load crispy_forms_tags %}
+{% block title %}forgot{% endblock %} 
+{% block content %}
+{% if not request.user.is_authenticated %}
+<table style="margin:auto; width:70%">
+    <tr>
+        <td>
+            <form method="post" enctype="multipart/form-data" action='/forgot/'>
+                {% csrf_token %}
+                {{forms | crispy}} 
+                 {% if messages %}
+                {% for msg in messages %}
+                    <div id="django-message" class="alert alert-{{ message.tags }}">
+                    <p style="background-color: #a4361f; color: black; padding: 10px; border-radius: 5px;">
+                    {{ msg }}
+                </p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-success mt-3">Submit</button>
+                </div>
+        </form>
+    <td>
+        <img src="{% static 'images/logo.png' %}"/>
+    </td>
+    </tr>
+</table>
+
+
+<script src="{% static 'Javascript/changepass.js' %}"> </script>
+<script src="{% static 'Javascript/hidden.js' %}"> </script>
+{% endif %}
+{% endblock %}

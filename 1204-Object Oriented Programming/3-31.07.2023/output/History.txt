@@ -1,0 +1,10 @@
+4
+01779938352_has_received_money_of 753
+You_have_cash_in_the_money 100
+You_have_cash_out_the_money 200
+You_have_pay_bill_the_money 150
+0
+1
+01632039154_has_sent_money_to_your_account 753
+0
+-1

@@ -1,0 +1,1 @@
+{"name":"Local: 1","url":"f:\\RUET CSE LAB\\2204-Numerical Methods\\4-04.11.2024\\1.lagrange code.py","tests":[{"id":1730713975605,"input":"3\n2 0.69315\n2.5 0.91629\n3 1.09861\n2.7","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"f:\\RUET CSE LAB\\2204-Numerical Methods\\4-04.11.2024\\1.lagrange code.py","group":"local","local":true}

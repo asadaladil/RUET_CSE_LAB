@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block title %}Transaction{% endblock %} 
+{% load crispy_forms_tags %}
+{% block content %}
+{% if request.user.is_authenticated %}
+
+<table style="margin:auto; width:70%">
+    <tr>
+        <td>
+            <form method="post" enctype="multipart/form-data" action='/accounts/transaction/' >
+                {% csrf_token %}
+                 <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <div style="flex: 1 1 45%;">{{ forms.type | as_crispy_field }}</div>  
+                    <div style="flex: 1 1 45%;">{{ forms.Specific | as_crispy_field }}</div>  
+                    <div style="flex: 1 1 45%;">{{ forms.Amount | as_crispy_field }}</div>
+                    <div style="flex: 1 1 45%;">{{ request.bank }}</div>  
+                     {% if messages %}
+                {% for msg in messages %}
+                    <div id="django-message" class="alert alert-{{ message.tags }}">
+                    <p style="background-color: #a4361f; color: black; padding: 10px; border-radius: 5px;">
+                    {{ msg }}
+                </p>
+                    </div>
+                {% endfor %}
+            {% endif %}   
+                </div> 
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                </div>
+        </form>
+        </td>
+        <td>
+            <img src="{% static 'images/logo.png' %}"/>
+        </td>
+    </tr>
+</table>
+{% endif %}
+<script>
+function text_color() {
+    // Hide the button but keep its space
+    document.getElementById("transaction").style.color="blue";
+  }
+text_color();
+</script>
+{% endblock %}

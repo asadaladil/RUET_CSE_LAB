@@ -1,0 +1,7 @@
+iverilog -o out.vpp Adder1bit.v Adder1bit_tb.v
+
+vvp out.vpp
+
+gtkwave test.vcd 
+
+iverilog -o out4bit.vpp Adder1bit.v Adder4bit.v Adder4bit_tb.v

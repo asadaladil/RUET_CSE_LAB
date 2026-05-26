@@ -1,0 +1,86 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Feb 16, 2025 at 06:47 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `sql_cookbook_employee`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dept`
+--
+
+CREATE TABLE `dept` (
+  `DEPTNO` int(11) DEFAULT NULL,
+  `DNAME` varchar(20) DEFAULT NULL,
+  `LOC` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dept`
+--
+
+INSERT INTO `dept` (`DEPTNO`, `DNAME`, `LOC`) VALUES
+(10, 'ACCOUNTING', 'NEW YORK'),
+(20, 'RESEARCH', 'DALLAS'),
+(30, 'SALES', 'CHICAGO'),
+(40, 'OPERATIONS', 'BOSTON');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emp`
+--
+
+CREATE TABLE `emp` (
+  `EMPNO` int(11) DEFAULT NULL,
+  `ENAME` varchar(20) DEFAULT NULL,
+  `JOB` varchar(20) DEFAULT NULL,
+  `MGR` int(11) DEFAULT NULL,
+  `HIREDATE` date DEFAULT NULL,
+  `SAL` decimal(10,2) DEFAULT NULL,
+  `COMM` decimal(10,2) DEFAULT NULL,
+  `DEPTNO` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `emp`
+--
+
+INSERT INTO `emp` (`EMPNO`, `ENAME`, `JOB`, `MGR`, `HIREDATE`, `SAL`, `COMM`, `DEPTNO`) VALUES
+(7369, 'SMITH', 'CLERK', 7902, '2005-12-17', 800.00, NULL, 20),
+(7499, 'ALLEN', 'SALESMAN', 7698, '2006-02-20', 1600.00, 300.00, 30),
+(7521, 'WARD', 'SALESMAN', 7698, '2006-02-22', 1250.00, 500.00, 30),
+(7566, 'JONES', 'MANAGER', 7839, '2006-04-02', 2975.00, NULL, 20),
+(7654, 'MARTIN', 'SALESMAN', 7698, '2006-09-28', 1250.00, 1400.00, 30),
+(7698, 'BLAKE', 'MANAGER', 7839, '2006-05-01', 2850.00, NULL, 30),
+(7782, 'CLARK', 'MANAGER', 7839, '2006-06-09', 2450.00, NULL, 10),
+(7788, 'SCOTT', 'ANALYST', 7566, '2007-12-09', 3000.00, NULL, 20),
+(7839, 'KING', 'PRESIDENT', NULL, '2006-11-17', 5000.00, NULL, 10),
+(7844, 'TURNER', 'SALESMAN', 7698, '2006-09-08', 1500.00, 0.00, 30),
+(7876, 'ADAMS', 'CLERK', 7788, '2008-01-12', 1100.00, NULL, 20),
+(7900, 'JAMES', 'CLERK', 7698, '2006-12-03', 950.00, NULL, 30),
+(7902, 'FORD', 'ANALYST', 7566, '2006-12-03', 3000.00, NULL, 20),
+(7934, 'MILLER', 'CLERK', 7782, '2007-01-23', 1300.00, NULL, 10);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

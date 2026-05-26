@@ -1,0 +1,1 @@
+{"name":"Local: 2-Bisection(general)","url":"f:\\RUET CSE LAB\\Numerical Methods 2204\\1-08.09.2024\\2-Bisection(general).py","tests":[{"id":1726035892965,"input":"2\n4\n-5\n-6","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"f:\\RUET CSE LAB\\Numerical Methods 2204\\1-08.09.2024\\2-Bisection(general).py","group":"local","local":true}

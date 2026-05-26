@@ -1,0 +1,24 @@
+Router> enable
+Router# configure terminal
+Router(config)# interface GigabitEthernet0/0/0  (Use the specific interface name)
+Router(config-if)# ip address 192.168.1.1 255.255.255.0
+Router(config-if)# no shutdown                  (This turns the interface on)
+Router(config-if)# exit
+
+Switch Config:
+Switch> enable
+Switch# configure terminal
+Switch(config)# interface vlan 1
+Switch(config-if)# ip address 192.168.1.2 255.255.255.0
+Switch(config-if)# no shutdown
+Switch(config-if)# exit
+
+For the switch to be reachable from a different network:
+Switch(config)# ip default-gateway 192.168.1.1
+
+
+After configuring the addresses, use these commands in Privileged EXEC mode (the Router# or Switch# prompt) to verify your work:
+
+show ip interface brief: Displays a summary of all interfaces, their IP addresses, and whether they are "up."
+
+ping [IP Address]: Tests connectivity between devices.

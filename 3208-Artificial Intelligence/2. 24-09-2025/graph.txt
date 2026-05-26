@@ -1,0 +1,14 @@
+S C 6
+S B 3
+S A 5
+A D 1
+E A 3
+B E 2
+B F 1
+C K 2
+D L 5
+D G 5
+F G 7
+F K 5
+G E 5
+K G 2
