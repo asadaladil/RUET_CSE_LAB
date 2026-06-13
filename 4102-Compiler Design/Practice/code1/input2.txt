@@ -1,0 +1,1 @@
+class Circle: public Shape {public: void draw () {printf("Circle");}};

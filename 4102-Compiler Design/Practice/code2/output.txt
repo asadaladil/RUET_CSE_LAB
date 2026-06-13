@@ -1,0 +1,16 @@
+CHAR: char
+POINTER: **
+CHAR: char
+POINTER: **
+MALLOC: malloc
+SIZEOF: sizeof
+CHAR: char
+FOR: for
+INC: ++
+CHAR: char
+MALLOC: malloc
+SIZEOF: sizeof
+CHAR: char
+FREE: free
+FREE: free
+Statements parsed successfully!

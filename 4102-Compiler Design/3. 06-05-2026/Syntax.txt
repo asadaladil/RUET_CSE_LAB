@@ -1,0 +1,23 @@
+%option noyywrap
+%{
+
+%}
+
+%{
+    // definition- tab.h header file
+%}
+
+## here write the CFG production.
+
+
+%%
+    --- Write the output
+%%
+
+
+/* int main()
+{
+    // built-in function
+    yylex();
+    return 0;
+} */

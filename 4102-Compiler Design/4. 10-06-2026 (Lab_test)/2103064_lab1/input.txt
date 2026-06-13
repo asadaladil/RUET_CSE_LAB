@@ -1,0 +1,5 @@
+char ** names = ( char ** ) malloc ( n * sizeof ( char * ) ) ;
+for ( i = 0 ; i < n ; i++ )
+names [ i ] = ( char * ) malloc ( size * sizeof ( char ) ) ;
+for ( i = 0 ; i < n ; i++ )
+free ( names [ i ] ) ; free ( names ) ;
