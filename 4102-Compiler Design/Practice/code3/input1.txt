@@ -1,0 +1,15 @@
+for (int i = 1; i<=10 ; i++)   
+{    
+    if(i%2 == 0)        
+    {
+        print(i);
+        print("Even");
+    }
+    else
+    {   
+        print(i);     
+        print("Odd");   
+    }   
+}
+ans = 4-5*9/3; 
+print(ans);

@@ -1,19 +1,7 @@
+import torch
 
-def function(mode,A):
-    with open("need_to_train.txt",mode=mode) as file:
-        if mode=="r":
-            arr=[]
-            file=file.readlines()
-            for i in file:
-                arr.append(int(i.split()))
-            return arr
-        else:
-            for i in A:
-                file.write(f"{i}\n")
-            return
+w=torch.stack([torch.tensor([1,2,3,5,0]), torch.tensor([3,4,5,2,8]), torch.tensor([5,6,3,4,7])])
+_,mn=torch.min(w,dim=0)
+print(_,mn)
 
-def save_value(arr):
-    function("w",arr)
 
-def get_value():
-    return function("r",[])

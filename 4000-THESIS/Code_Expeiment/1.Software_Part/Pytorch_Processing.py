@@ -15,18 +15,19 @@ class DualShiftQuantize(torch.autograd.Function):
     def forward(ctx, weight, global_scale=128.0): # Scale of 128.0 (2^7) turns decimals into 8-bit integers
         
         # Scale the weights and force them into our 8-bit hardware boundary (-127 to 127)
-        w_scaled = torch.round(weight * global_scale) # Rounding simulates hardware losing decimal precision
+        w_scaled = weight * global_scale
+        w_scaled = torch.round(w_scaled) # Rounding simulates hardware losing decimal precision
         w_scaled = torch.clamp(w_scaled, -127.0, 127.0) # Hardware cannot hold numbers larger than 8 bits
         
         # Extract the Global Sign bit (Mapping to w[7] in your hardware)
         sign = torch.sign(w_scaled) # Returns -1 or 1
         sign = torch.where(sign == 0, torch.tensor(1.0, device=weight.device), sign) # Treat 0 as positive to avoid math errors
-        mag = torch.abs(w_scaled) # The absolute magnitude to be processed by the shifters
+        magnitude = torch.abs(w_scaled) # The absolute magnitude to be processed by the shifters
         
         # Find the primary power of two (Mapping to Shift A: w[6:4])
         # 1e-9 prevents log2(0) crashes. Ceil finds the upper bound power of two. 
         e = 1e-9
-        log_mag = torch.log2(mag + e)
+        log_mag = torch.log2(magnitude + e)
         # -------------------------------------------------------------
         # 1. Calculate Primary Shifts (Shift A)
         # -------------------------------------------------------------
@@ -35,26 +36,39 @@ class DualShiftQuantize(torch.autograd.Function):
         
         # Find the secondary power of two (Mapping to Shift B: w[2:0])
         # Calculate remainders for both A paths
-        rem_ceil = torch.abs(mag - 2.0**a_ceil)
-        rem_floor = torch.abs(mag - 2.0**a_floor)
+        rem_ceil = torch.abs(magnitude - 2.0**a_ceil)
+        rem_floor = torch.abs(magnitude - 2.0**a_floor)
 
         # -------------------------------------------------------------
         # 2. Calculate Secondary Shifts (Shift B)
         # -------------------------------------------------------------
-        # For a_ceil path
-        b_cc = torch.clamp(torch.ceil(torch.log2(rem_ceil + e)), 0.0, 7.0)
-        b_cf = torch.clamp(torch.floor(torch.log2(rem_ceil + e)), 0.0, 7.0)
         
-        # For a_floor path
-        b_fc = torch.clamp(torch.ceil(torch.log2(rem_floor + e)), 0.0, 7.0)
-        b_ff = torch.clamp(torch.floor(torch.log2(rem_floor + e)), 0.0, 7.0)
+        # Ceil-Ceil Combination:
+        val  = torch.log2(rem_ceil + e)
+        val  = torch.ceil(val)
+        b_cc = torch.clamp(val, 0.0, 7.0)
+        
+        # Ceil-Floor Combination:
+        val  = torch.log2(rem_ceil + e)
+        val  = torch.floor(val)
+        b_cf = torch.clamp(val, 0.0, 7.0)
+        
+        # Floor-Ceil Combination:
+        val  = torch.log2(rem_floor + e)
+        val  = torch.ceil(val)
+        b_fc = torch.clamp(val, 0.0, 7.0)
+
+        # Floor-Floor Combination:
+        val  = torch.log2(rem_floor + e)
+        val  = torch.floor(val)
+        b_ff = torch.clamp(val, 0.0, 7.0)
 
         # -------------------------------------------------------------
         # 3. Determine the Add/Sub bit ('mark' in your logic)
         # -------------------------------------------------------------
         # If the target magnitude (x) is less than the base (2**x1), we subtract.
-        mark_c = (mag < 2.0**a_ceil).float()
-        mark_f = (mag < 2.0**a_floor).float()
+        mark_c = (magnitude < 2.0**a_ceil).float()
+        mark_f = (magnitude < 2.0**a_floor).float()
 
         # -------------------------------------------------------------
         # 4. Reconstruct the 4 Candidate Values
@@ -67,10 +81,10 @@ class DualShiftQuantize(torch.autograd.Function):
         # -------------------------------------------------------------
         # 5. Calculate Absolute Errors
         # -------------------------------------------------------------
-        err_cc = torch.abs(mag - val_cc)
-        err_cf = torch.abs(mag - val_cf)
-        err_fc = torch.abs(mag - val_fc)
-        err_ff = torch.abs(mag - val_ff)
+        err_cc = torch.abs(magnitude - val_cc)
+        err_cf = torch.abs(magnitude - val_cf)
+        err_fc = torch.abs(magnitude - val_fc)
+        err_ff = torch.abs(magnitude - val_ff)
 
         # -------------------------------------------------------------
         # 6. Select the Optimal Candidate (Minimum Error)
@@ -80,10 +94,11 @@ class DualShiftQuantize(torch.autograd.Function):
         all_errs = torch.stack([err_cc, err_cf, err_fc, err_ff], dim=0)
 
         # Find the index (0, 1, 2, or 3) of the smallest error for every single weight
-        _, best_indices = torch.min(all_errs, dim=0)
+        _, best_indices = torch.min(all_errs, dim=0) # first part is given the minimum value
+        # second part is given the minimum value carrying indices.
 
         # Gather the winning reconstructed values using the winning indices
-        best_mag = torch.gather(all_vals, 0, best_indices.unsqueeze(0)).squeeze(0)
+        best_mag = torch.gather(all_vals, dim=0, index=best_indices.unsqueeze(0)).squeeze(0)
 
         # -------------------------------------------------------------
         # 7. Apply the Global Sign and Scale Down
@@ -102,9 +117,14 @@ class DualShiftQuantize(torch.autograd.Function):
 # 2. HARDWARE-SPECIFIC CONVOLUTION LAYER
 # =====================================================================
 class QATConv2d(nn.Conv2d):
-    def forward(self, input):
+    def __init__(self,in_channels,out_channels,kernel_size,stride=1,padding=0,dilation=1,groups=1,bias=True):
+        super().__init__(in_channels, out_channels, kernel_size, stride, padding, dilation, groups, bias)
+
+    def forward(self, input): # Override the forward function of nn.Conv2d
+        
         # Before performing the math, this intercepts the weights and forces them into the Dual-Shift format.
         q_weight = DualShiftQuantize.apply(self.weight) 
+        
         # Standard convolution operation using our restricted hardware-ready weights
         return F.conv2d(input, q_weight, self.bias, self.stride, self.padding, self.dilation, self.groups)
 
@@ -113,7 +133,7 @@ class QATConv2d(nn.Conv2d):
 # =====================================================================
 class HardwareNet(nn.Module):
     def __init__(self):
-        super(HardwareNet, self).__init__()
+        super().__init__()
         
         # Layer 1: 32 feature maps. 3x3 kernel. Stride 1.
         self.conv1 = QATConv2d(1, 32, kernel_size=3, padding=0) # Padding 0 shrinks 28x28 input to 26x26

@@ -1,1 +1,13 @@
-
+FOR: for
+LP: (
+INT: int
+ID: i
+ASSIGN: =
+NUM: 1
+SEMI: ;
+ID: i
+LE: <=
+NUM: 10
+SEMI: ;
+ID: i
+ADD: +

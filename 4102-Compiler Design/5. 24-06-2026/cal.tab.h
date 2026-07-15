@@ -39,26 +39,65 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     NUM = 258,
-     ADD = 259,
-     INT = 260,
-     ELSE = 261,
-     LP = 262,
-     RP = 263,
-     EQU = 264,
-     ASSIGN = 265,
-     ID = 266,
-     LC = 267,
-     RC = 268,
-     SEMI = 269,
-     IF = 270
+     INT = 258,
+     FLOAT = 259,
+     FOR = 260,
+     WHILE = 261,
+     IF = 262,
+     ELSE = 263,
+     RETURN = 264,
+     STRUCT = 265,
+     VOID = 266,
+     COLON = 267,
+     PRINTF = 268,
+     LP = 269,
+     RP = 270,
+     LC = 271,
+     RC = 272,
+     LS = 273,
+     RS = 274,
+     ADD = 275,
+     SUB = 276,
+     MUL = 277,
+     DIV = 278,
+     MOD = 279,
+     NE = 280,
+     AND = 281,
+     OR = 282,
+     NOT = 283,
+     ASSIGN = 284,
+     EQU = 285,
+     SEMI = 286,
+     GT = 287,
+     LT = 288,
+     GE = 289,
+     LE = 290,
+     COMMA = 291,
+     QUES = 292,
+     ID = 293,
+     STRING_LITERAL = 294,
+     NUM = 295,
+     FLOAT_NUM = 296
    };
 #endif
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+{
+
+/* Line 1676 of yacc.c  */
+#line 41 "cal.y"
+
+    int ival;
+    char* sval;
+
+
+
+/* Line 1676 of yacc.c  */
+#line 100 "cal.tab.h"
+} YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

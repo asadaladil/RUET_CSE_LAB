@@ -1,0 +1,237 @@
+START: start
+
+INT: int
+ID: arr
+LS: [
+NUM: 5
+ADD: +
+NUM: 4
+RS: ]
+ASSIGN: =
+LC: {
+NUM: 1
+COMMA: ,
+NUM: 2
+COMMA: ,
+NUM: 3
+RC: }
+SEMI: ;
+
+
+ID: arr
+LS: [
+NUM: 2
+ADD: +
+NUM: 1
+RS: ]
+ASSIGN: =
+NUM: 12
+SEMI: ;
+Updated arr[3] to 12
+
+
+INT: int
+ID: myFunc
+LP: (
+RP: )
+
+LC: {
+
+ID: arr
+LS: [
+NUM: 1
+RS: ]
+ASSIGN: =
+NUM: 152
+SEMI: ;
+Updated arr[1] to 152
+
+RETURN: return
+ID: x
+SEMI: ;
+Return value: 0
+
+RC: }
+
+
+
+FLOAT: float
+ID: myFunc
+LP: (
+ID: x
+COMMA: ,
+ID: y
+COMMA: ,
+NUM: 5
+RP: )
+
+LC: {
+
+ID: arr
+LS: [
+NUM: 1
+RS: ]
+ASSIGN: =
+NUM: 152
+SEMI: ;
+Updated arr[1] to 152
+
+RETURN: return
+NUM: 0
+SEMI: ;
+Return value: 0
+
+RC: }
+
+
+ID: myFunc
+LP: (
+NUM: 12
+COMMA: ,
+NUM: 23
+COMMA: ,
+NUM: 32
+RP: )
+SEMI: ;
+
+
+INT: int
+ID: a
+ASSIGN: =
+NUM: 10
+ADD: +
+NUM: 2
+SUB: -
+NUM: 4
+MUL: *
+NUM: 2
+DIV: /
+NUM: 2
+SEMI: ;
+
+
+IF: if
+LP: (
+ID: a
+EQU: ==
+NUM: 8
+RP: )
+
+LC: {
+
+INT: int
+ID: b
+ASSIGN: =
+NUM: 100
+ADD: +
+NUM: 2
+ADD: +
+ID: myFunc
+LP: (
+NUM: 1
+COMMA: ,
+NUM: 2
+COMMA: ,
+NUM: 3
+RP: )
+SEMI: ;
+
+RC: }
+
+
+IF: if
+LP: (
+ID: a
+EQU: ==
+NUM: 9
+RP: )
+
+LC: {
+
+INT: int
+ID: c
+ASSIGN: =
+NUM: 200
+SEMI: ;
+
+RC: }
+
+ELSE: else
+
+LC: {
+
+INT: int
+ID: d
+ASSIGN: =
+NUM: 300
+SEMI: ;
+
+RC: }
+
+
+WHILE: while
+LP: (
+ID: a
+EQU: ==
+NUM: 8
+RP: )
+
+LC: {
+
+ID: a
+ASSIGN: =
+ID: a
+ADD: +
+NUM: 1
+SEMI: ;
+
+RC: }
+
+
+FOR: for
+LP: (
+INT: int
+ID: i
+ASSIGN: =
+NUM: 0
+SEMI: ;
+ID: i
+EQU: ==
+NUM: 10
+SEMI: ;
+ID: i
+INC: ++
+RP: )
+
+LC: {
+
+INT: int
+ID: e
+ASSIGN: =
+NUM: 400
+SEMI: ;
+
+RC: }
+
+
+INT: int
+ID: ABC
+ASSIGN: =
+LP: (
+ID: e
+ADD: +
+ID: d
+RP: )
+DIV: /
+NUM: 10
+SEMI: ;
+
+PRINT: print
+LP: (
+ID: ABC
+RP: )
+SEMI: ;
+Output-> 70
+
+END: end
+Statements parsed successfully!

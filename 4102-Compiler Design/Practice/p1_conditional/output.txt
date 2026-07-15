@@ -1,0 +1,13 @@
+--- Starting Execution ---
+[Exec] Declared variable -> Evaluated Math Value = 8
+[Exec] Evaluated Condition -> TRUE
+[Exec] Declared variable -> Evaluated Math Value = 102
+[Exec] Finished processing complete if-only structure
+[Exec] Evaluated Condition -> FALSE
+[Exec] Declared variable -> Evaluated Math Value = 300
+[Exec] Finished processing complete if-else structure
+[Exec] Updated variable assignment -> Evaluated Value = 9
+[Exec] Parsed WHILE loop structure.
+[Exec] Declared variable -> Evaluated Math Value = 400
+[Exec] Parsed FOR loop structure.
+--- Finished Execution ---

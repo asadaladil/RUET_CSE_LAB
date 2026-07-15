@@ -1,0 +1,9 @@
+main shuru
+
+    a=10 of type int
+    jotokkhon a<20
+    print="counting"
+    b of type int = 20*(30+10-5)
+    unit increase 1
+
+main shesh

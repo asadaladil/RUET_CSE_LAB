@@ -1,0 +1,1 @@
+Shape *obj=new Circle();

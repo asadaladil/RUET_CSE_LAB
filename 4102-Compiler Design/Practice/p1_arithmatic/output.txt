@@ -1,0 +1,12 @@
+--- Starting Execution ---
+[Parse] Variable Declaration (Initial Value = 8)
+[Parse] Variable Declaration (Initial Value = 102)
+[Parse] Successfully parsed an IF-ONLY block.
+[Parse] Variable Declaration (Initial Value = 200)
+[Parse] Variable Declaration (Initial Value = 300)
+[Parse] Successfully parsed an IF-ELSE block.
+[Parse] Variable Assignment (Value = 9)
+[Parse] Successfully parsed a WHILE loop.
+[Parse] Variable Declaration (Initial Value = 400)
+[Parse] Successfully parsed a FOR loop.
+--- Finished Execution ---

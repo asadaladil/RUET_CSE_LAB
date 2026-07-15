@@ -1,0 +1,44 @@
+MAIN: main
+SHURU: shuru
+
+
+ID: a
+ASSIGN: =
+NUM: 10
+OF: of
+TYPE: type
+INT: int
+
+JOTOKKHON: jotokkhon
+ID: a
+LT: <
+NUM: 20
+
+PRINT: print
+ASSIGN: =
+STRING_LITERAL: "counting"
+
+ID: b
+OF: of
+TYPE: type
+INT: int
+ASSIGN: =
+NUM: 20
+MUL: *
+LP: (
+NUM: 30
+ADD: +
+NUM: 10
+SUB: -
+NUM: 5
+RP: )
+
+UNIT: unit
+Result-> 700
+INCREASE: increase
+NUM: 1
+
+
+MAIN: main
+SHESH: shesh
+Statements parsed successfully!
